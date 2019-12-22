@@ -10,13 +10,12 @@ end
 
 # PRODUCTION ENVIRONMENT -----------------------------------
 # Retweet transaction
-# @client.home_timeline.each do |tweet|
-#     if tweet.user.screen_name != "ichikosai"
-#         p tweet.text
-#         @client.retweet(tweet.id)
-#     end
-# end
+@client.home_timeline.each do |tweet|
+    if tweet.user.screen_name != "ichikosai"
+        @client.retweet(tweet.id)
+    end
+end
 
 # TEST ENVIRONMENT -----------------------------------------
 # Tweet constantly
-@client.update("I'm tweeting with @gem!")
+# @client.update("I'm tweeting with @gem!")
