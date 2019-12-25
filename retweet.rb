@@ -10,8 +10,8 @@ end
 
 # PRODUCTION ENVIRONMENT -----------------------------------
 # Retweet transaction (Home Timeline)
-@client.home_timeline.each do |tweet|
-    if tweet.user.screen_name != "ichikosai"
+@client.list_timeline("ichikosai", "list").each do |tweet|
+    if tweet.user.screen_name != "ichikosai" && !tweet.retweeted?
         @client.retweet(tweet.id)
     end
 end
@@ -20,16 +20,18 @@ end
 # Tweet constantly
 # @client.update("I'm tweeting with @gem!")
 
-# # Retweet transaction (User Timeline)
-# array = []
+#Retweet transaction (User Timeline)
+# list_name = "list"
+# list_array = []
 #
-# # Fill in the blank
-# list_name = ""
 # list_members = @client.list_members(list_name)
 #
 # list_members.each do |member|
-#   array.push(member.id)
+#   list_array.push(member.id)
 # end
+#
+# p list_array
+#
 #
 # # Test puts
 # @client.user_timeline(*array).each do |tweet|
