@@ -11,30 +11,7 @@ end
 # PRODUCTION ENVIRONMENT -----------------------------------
 # Retweet transaction (Home Timeline)
 @client.list_timeline("ichikosai", "list").each do |tweet|
-    if tweet.user.screen_name != "ichikosai" && !tweet.retweeted?
+    if tweet.user.screen_name != "ichikosai" && !tweet.retweeted? && !tweet.full_text.include?("匿名質問") # Avoidance of a specified word
         @client.retweet(tweet.id)
     end
 end
-
-# TEST ENVIRONMENT -----------------------------------------
-# Tweet constantly
-# @client.update("I'm tweeting with @gem!")
-
-#Retweet transaction (User Timeline)
-# list_name = "list"
-# list_array = []
-#
-# list_members = @client.list_members(list_name)
-#
-# list_members.each do |member|
-#   list_array.push(member.id)
-# end
-#
-# p list_array
-#
-#
-# # Test puts
-# @client.user_timeline(*array).each do |tweet|
-#   p tweet.text
-#   p "-----------------------------------------------------"
-# end
